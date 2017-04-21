@@ -10,6 +10,7 @@ struct DNNPara {
     float *weights[MAXLAYER];       // weights for layers
     float *bias[MAXLAYER];          // biases for layers
 
+    // equals to number of hidden layers plus output layer
     int num_layers;
     // [i] is the input dim of i-th layer
     // and output dim of (i-1)-th layer

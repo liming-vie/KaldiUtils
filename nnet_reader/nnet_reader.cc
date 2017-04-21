@@ -307,7 +307,10 @@ void NNetReader::Read(const std::string& model_file) {
 void NNetReader::ReadOneLayer(std::string &token, FileInput &fin,
         int dim_in, int dim_out) {
     std::transform(token.begin(), token.end(), token.begin(), ::tolower);
-    if (token == "<softmax>" || token == "<sigmoid>") { // do nothing
+    if (token == "<softmax>") { // output layer
+        ++dnn_para_.num_layers_;
+        return;
+    } else if(token == "<sigmoid>") { // do nothing
         return;
     } else if (token != "<affinetransform>") {
         fprintf(stderr, "NNetReader::ReadOneLayer, Unexpected token %s\n",
